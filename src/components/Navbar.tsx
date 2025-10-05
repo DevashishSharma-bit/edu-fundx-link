@@ -38,6 +38,14 @@ export const Navbar = ({ userRole }: NavbarProps) => {
               Home
             </Link>
             <Link
+              to="/explore-rooms"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                isActive('/explore-rooms') ? 'text-primary' : 'text-muted-foreground'
+              }`}
+            >
+              Idea Rooms
+            </Link>
+            <Link
               to="/leaderboard"
               className={`text-sm font-medium transition-colors hover:text-primary ${
                 isActive('/leaderboard') ? 'text-primary' : 'text-muted-foreground'
@@ -56,6 +64,13 @@ export const Navbar = ({ userRole }: NavbarProps) => {
 
             {userRole ? (
               <>
+                {userRole === 'student' && (
+                  <Link to="/post-idea">
+                    <Button variant="outline" size="sm">
+                      Post Idea
+                    </Button>
+                  </Link>
+                )}
                 <Link to={userRole === 'student' ? '/student-dashboard' : '/investor-dashboard'}>
                   <Button variant="gradient" size="sm">
                     Dashboard
@@ -91,6 +106,13 @@ export const Navbar = ({ userRole }: NavbarProps) => {
               Home
             </Link>
             <Link
+              to="/explore-rooms"
+              className="block px-4 py-2 rounded-lg hover:bg-accent"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Idea Rooms
+            </Link>
+            <Link
               to="/leaderboard"
               className="block px-4 py-2 rounded-lg hover:bg-accent"
               onClick={() => setMobileMenuOpen(false)}
@@ -105,14 +127,23 @@ export const Navbar = ({ userRole }: NavbarProps) => {
               AI Mentor
             </Link>
             {userRole ? (
-              <Link
-                to={userRole === 'student' ? '/student-dashboard' : '/investor-dashboard'}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <Button variant="gradient" size="sm" className="w-full">
-                  Dashboard
-                </Button>
-              </Link>
+              <>
+                {userRole === 'student' && (
+                  <Link to="/post-idea" onClick={() => setMobileMenuOpen(false)}>
+                    <Button variant="outline" size="sm" className="w-full mb-2">
+                      Post Idea
+                    </Button>
+                  </Link>
+                )}
+                <Link
+                  to={userRole === 'student' ? '/student-dashboard' : '/investor-dashboard'}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Button variant="gradient" size="sm" className="w-full">
+                    Dashboard
+                  </Button>
+                </Link>
+              </>
             ) : (
               <Link to="/auth" onClick={() => setMobileMenuOpen(false)}>
                 <Button variant="gradient" size="sm" className="w-full">

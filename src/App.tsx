@@ -12,6 +12,10 @@ import StudentDashboard from "./pages/StudentDashboard";
 import InvestorDashboard from "./pages/InvestorDashboard";
 import Leaderboard from "./pages/Leaderboard";
 import AIMentor from "./pages/AIMentor";
+import PostIdea from "./pages/PostIdea";
+import IdeaRoom from "./pages/IdeaRoom";
+import ExploreRooms from "./pages/ExploreRooms";
+import RoomDetails from "./pages/RoomDetails";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +39,10 @@ const App = () => {
                 <Route path="/investor-dashboard" element={<InvestorDashboard />} />
                 <Route path="/leaderboard" element={<Leaderboard />} />
                 <Route path="/ai-mentor" element={<AIMentor />} />
+                <Route path="/post-idea" element={<PostIdea />} />
+                <Route path="/idea-room/:id" element={<IdeaRoom />} />
+                <Route path="/explore-rooms" element={<ExploreRooms />} />
+                <Route path="/room-details/:id" element={<RoomDetails />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
