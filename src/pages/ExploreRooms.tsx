@@ -22,14 +22,14 @@ export default function ExploreRooms() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-yellow-50 py-12 px-4">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8"
         >
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+          <h1 className="text-4xl font-bold text-black mb-2">
             Explore Idea Rooms
           </h1>
           <p className="text-muted-foreground">
@@ -51,12 +51,12 @@ export default function ExploreRooms() {
                   placeholder="Search ideas..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-background/50"
+                  className="pl-10 bg-white border-gray-200"
                 />
               </div>
             </div>
             <Select value={domainFilter} onValueChange={setDomainFilter}>
-              <SelectTrigger className="bg-background/50">
+              <SelectTrigger className="bg-white border-gray-200">
                 <SelectValue placeholder="All Domains" />
               </SelectTrigger>
               <SelectContent>
@@ -70,7 +70,7 @@ export default function ExploreRooms() {
               </SelectContent>
             </Select>
             <Select value={stageFilter} onValueChange={setStageFilter}>
-              <SelectTrigger className="bg-background/50">
+              <SelectTrigger className="bg-white border-gray-200">
                 <SelectValue placeholder="All Stages" />
               </SelectTrigger>
               <SelectContent>
@@ -107,7 +107,7 @@ export default function ExploreRooms() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20">
+                  <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-blue-100 to-orange-100 border border-blue-200">
                     <TrendingUp className="h-3 w-3 text-blue-600" />
                     <span className="text-xs font-semibold text-blue-600">{room.progress}%</span>
                   </div>
@@ -119,8 +119,8 @@ export default function ExploreRooms() {
               </p>
 
               <div className="flex flex-wrap gap-2 mb-4">
-                <Badge variant="secondary">{room.domain}</Badge>
-                <Badge className="bg-blue-600">{room.stage}</Badge>
+                <Badge variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-200">{room.domain}</Badge>
+                <Badge className="bg-orange-100 text-orange-700 hover:bg-orange-200">{room.stage}</Badge>
               </div>
 
               <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
@@ -135,7 +135,7 @@ export default function ExploreRooms() {
               </div>
 
               <Link to={`/idea-room/${room.id}`}>
-                <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                <Button className="w-full bg-gradient-to-r from-blue-500 to-orange-400 hover:from-blue-600 hover:to-orange-500 text-white">
                   View Details
                 </Button>
               </Link>

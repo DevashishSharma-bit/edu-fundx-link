@@ -1,15 +1,28 @@
-import { motion } from 'framer-motion';
-import { useParams } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
-import { useToast } from '@/hooks/use-toast';
-import { mockIdeaRooms, mockTeamMembers } from '@/data/mockData';
-import { Users, Download, Heart, Calendar, MapPin, TrendingUp } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { useState } from 'react';
+import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { useToast } from "@/hooks/use-toast";
+import { mockIdeaRooms, mockTeamMembers } from "@/data/mockData";
+import {
+  Users,
+  Download,
+  Heart,
+  Calendar,
+  MapPin,
+  TrendingUp,
+} from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
 
 export default function RoomDetails() {
   const { id } = useParams();
@@ -17,12 +30,13 @@ export default function RoomDetails() {
   const [feedbackOpen, setFeedbackOpen] = useState(false);
 
   const room = mockIdeaRooms[0];
-  const teamMembers = mockTeamMembers.filter(m => m.roomId === 1);
+  const teamMembers = mockTeamMembers.filter((m) => m.roomId === 1);
 
   const handleShowInterest = () => {
     toast({
       title: "Interest Sent! 🎉",
-      description: "Your interest has been sent to the founder. They will reach out soon!",
+      description:
+        "Your interest has been sent to the founder. They will reach out soon!",
     });
   };
 
@@ -43,7 +57,7 @@ export default function RoomDetails() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-yellow-50 py-12 px-4">
       <div className="container mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -60,12 +74,17 @@ export default function RoomDetails() {
                 />
                 <div>
                   <h1 className="text-3xl font-bold">{room.title}</h1>
-                  <p className="text-sm text-muted-foreground">by {room.creatorName}</p>
+                  <p className="text-sm text-muted-foreground">
+                    by {room.creatorName}
+                  </p>
                 </div>
               </div>
             </div>
             <div className="flex gap-2">
-              <Button onClick={handleShowInterest} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+              <Button
+                onClick={handleShowInterest}
+                className="bg-gradient-to-r from-blue-500 to-orange-400 hover:from-blue-600 hover:to-orange-500 text-white"
+              >
                 <Heart className="h-4 w-4" />
                 Show Interest
               </Button>
@@ -77,18 +96,37 @@ export default function RoomDetails() {
           </div>
 
           <div className="flex flex-wrap gap-2 mb-6">
-            <Badge variant="secondary">{room.domain}</Badge>
-            <Badge className="bg-blue-600">{room.stage}</Badge>
-            <Badge variant="outline">
+            <Badge
+              variant="secondary"
+              className="bg-blue-100 text-blue-700 hover:bg-blue-200"
+            >
+              {room.domain}
+            </Badge>
+            <Badge className="bg-orange-100 text-orange-700 hover:bg-orange-200">
+              {room.stage}
+            </Badge>
+            <Badge
+              variant="outline"
+              className="bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100"
+            >
               <MapPin className="h-3 w-3 mr-1" />
               {room.country}
             </Badge>
-            <Badge variant="outline">
+            <Badge
+              variant="outline"
+              className="bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100"
+            >
               <Users className="h-3 w-3 mr-1" />
               {room.teamSize} members
             </Badge>
-            {room.tags.map(tag => (
-              <Badge key={tag} variant="outline">{tag}</Badge>
+            {room.tags.map((tag) => (
+              <Badge
+                key={tag}
+                variant="outline"
+                className="bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100"
+              >
+                {tag}
+              </Badge>
             ))}
           </div>
 
@@ -117,19 +155,29 @@ export default function RoomDetails() {
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-2">Required Skills</h3>
             <div className="flex flex-wrap gap-2">
-              {room.requiredSkills.map(skill => (
-                <Badge key={skill} variant="secondary">{skill}</Badge>
+              {room.requiredSkills.map((skill) => (
+                <Badge
+                  key={skill}
+                  variant="secondary"
+                  className="bg-blue-100 text-blue-700 hover:bg-blue-200"
+                >
+                  {skill}
+                </Badge>
               ))}
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             <div className="p-4 rounded-lg bg-muted/50 border">
-              <p className="text-sm font-medium text-muted-foreground mb-1">Duration</p>
+              <p className="text-sm font-medium text-muted-foreground mb-1">
+                Duration
+              </p>
               <p className="font-semibold">{room.duration}</p>
             </div>
             <div className="p-4 rounded-lg bg-muted/50 border">
-              <p className="text-sm font-medium text-muted-foreground mb-1">Started</p>
+              <p className="text-sm font-medium text-muted-foreground mb-1">
+                Started
+              </p>
               <p className="font-semibold">{room.createdAt}</p>
             </div>
           </div>
@@ -149,7 +197,9 @@ export default function RoomDetails() {
           className="glass-card p-8 mb-6"
         >
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold">Team Members ({teamMembers.length})</h2>
+            <h2 className="text-2xl font-bold">
+              Team Members ({teamMembers.length})
+            </h2>
             <Dialog open={feedbackOpen} onOpenChange={setFeedbackOpen}>
               <DialogTrigger asChild>
                 <Button variant="outline">Leave Feedback</Button>
@@ -167,7 +217,10 @@ export default function RoomDetails() {
                       required
                     />
                   </div>
-                  <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-purple-600">
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-blue-500 to-orange-400 hover:from-blue-600 hover:to-orange-500 text-white"
+                  >
                     Submit Feedback
                   </Button>
                 </form>
@@ -191,10 +244,16 @@ export default function RoomDetails() {
                 />
                 <div className="flex-1">
                   <h4 className="font-semibold">{member.name}</h4>
-                  <p className="text-sm text-muted-foreground mb-2">{member.role}</p>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    {member.role}
+                  </p>
                   <div className="flex flex-wrap gap-1">
-                    {member.skills.map(skill => (
-                      <Badge key={skill} variant="outline" className="text-xs">
+                    {member.skills.map((skill) => (
+                      <Badge
+                        key={skill}
+                        variant="outline"
+                        className="text-xs bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100"
+                      >
                         {skill}
                       </Badge>
                     ))}
@@ -214,9 +273,10 @@ export default function RoomDetails() {
           <h2 className="text-2xl font-bold mb-4">Full Description</h2>
           <p className="text-muted-foreground mb-4">{room.description}</p>
           <p className="text-muted-foreground">
-            This project aims to revolutionize the {room.domain} industry by addressing critical challenges 
-            and providing innovative solutions. The team is actively seeking funding and strategic partnerships 
-            to scale their impact globally.
+            This project aims to revolutionize the {room.domain} industry by
+            addressing critical challenges and providing innovative solutions.
+            The team is actively seeking funding and strategic partnerships to
+            scale their impact globally.
           </p>
         </motion.div>
       </div>

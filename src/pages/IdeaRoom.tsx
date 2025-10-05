@@ -49,7 +49,7 @@ export default function IdeaRoom() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-white to-yellow-50">
       <div className="container mx-auto px-4 py-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -65,7 +65,7 @@ export default function IdeaRoom() {
                   className="w-12 h-12 rounded-full"
                 />
                 <div>
-                  <h1 className="text-3xl font-bold">{room.title}</h1>
+                  <h1 className="text-3xl font-bold text-black">{room.title}</h1>
                   <p className="text-sm text-muted-foreground">
                     by {room.creatorName} • {room.createdAt}
                   </p>
@@ -73,11 +73,11 @@ export default function IdeaRoom() {
               </div>
               
               <div className="flex flex-wrap gap-2 mb-4">
-                <Badge variant="secondary">{room.domain}</Badge>
-                <Badge className="bg-blue-600">{room.stage}</Badge>
-                <Badge variant="outline">{room.country}</Badge>
+                <Badge variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-200">{room.domain}</Badge>
+                <Badge className="bg-orange-100 text-orange-700 hover:bg-orange-200">{room.stage}</Badge>
+                <Badge variant="outline" className="bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100">{room.country}</Badge>
                 {room.tags.map(tag => (
-                  <Badge key={tag} variant="outline">{tag}</Badge>
+                  <Badge key={tag} variant="outline" className="bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100">{tag}</Badge>
                 ))}
               </div>
 
@@ -85,16 +85,16 @@ export default function IdeaRoom() {
 
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Project Progress</span>
-                  <span className="font-semibold">{room.progress}%</span>
+                  <span className="text-gray-600">Project Progress</span>
+                  <span className="font-semibold text-blue-700">{room.progress}%</span>
                 </div>
-                <Progress value={room.progress} className="h-2" />
+                <Progress value={room.progress} className="h-3 bg-blue-100 [&>div]:bg-gradient-to-r [&>div]:from-blue-500 [&>div]:to-orange-400" />
               </div>
             </div>
 
             <Dialog open={joinDialogOpen} onOpenChange={setJoinDialogOpen}>
               <DialogTrigger asChild>
-                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                <Button className="bg-gradient-to-r from-blue-500 to-orange-400 hover:from-blue-600 hover:to-orange-500 text-white">
                   <UserPlus className="h-4 w-4" />
                   Join This Room
                 </Button>
@@ -124,7 +124,7 @@ export default function IdeaRoom() {
                     <Label>Why do you want to join?</Label>
                     <Input placeholder="Tell us about your interest..." />
                   </div>
-                  <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-purple-600">
+                  <Button type="submit" className="w-full bg-gradient-to-r from-blue-500 to-orange-400 hover:from-blue-600 hover:to-orange-500 text-white">
                     Send Join Request
                   </Button>
                 </form>
@@ -136,10 +136,10 @@ export default function IdeaRoom() {
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
             <Tabs defaultValue="overview" className="glass-card">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="tasks">Task Board</TabsTrigger>
-                <TabsTrigger value="timeline">Timeline</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3 bg-blue-50 border border-blue-100">
+                <TabsTrigger value="overview" className="data-[state=active]:bg-white data-[state=active]:text-blue-700 data-[state=active]:shadow-sm text-blue-600">Overview</TabsTrigger>
+                <TabsTrigger value="tasks" className="data-[state=active]:bg-white data-[state=active]:text-blue-700 data-[state=active]:shadow-sm text-blue-600">Task Board</TabsTrigger>
+                <TabsTrigger value="timeline" className="data-[state=active]:bg-white data-[state=active]:text-blue-700 data-[state=active]:shadow-sm text-blue-600">Timeline</TabsTrigger>
               </TabsList>
 
               <TabsContent value="overview" className="p-6 space-y-6">
@@ -155,7 +155,7 @@ export default function IdeaRoom() {
                   <h3 className="text-lg font-semibold mb-2">Required Skills</h3>
                   <div className="flex flex-wrap gap-2">
                     {room.requiredSkills.map(skill => (
-                      <Badge key={skill} variant="secondary">{skill}</Badge>
+                      <Badge key={skill} variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-200">{skill}</Badge>
                     ))}
                   </div>
                 </div>
@@ -194,7 +194,7 @@ export default function IdeaRoom() {
                           key={task.id}
                           initial={{ opacity: 0, scale: 0.9 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          className="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800"
+                          className="p-3 rounded-lg bg-blue-50 border border-blue-200"
                         >
                           <p className="text-sm font-medium">{task.title}</p>
                           {task.assignee && (
@@ -213,7 +213,7 @@ export default function IdeaRoom() {
                           key={task.id}
                           initial={{ opacity: 0, scale: 0.9 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          className="p-3 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800"
+                          className="p-3 rounded-lg bg-green-50 border border-green-200"
                         >
                           <p className="text-sm font-medium">{task.title}</p>
                           {task.assignee && (
@@ -239,7 +239,7 @@ export default function IdeaRoom() {
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                         milestone.completed
                           ? 'bg-green-500 text-white'
-                          : 'bg-muted text-muted-foreground'
+                          : 'bg-blue-100 text-blue-600 border border-blue-200'
                       }`}>
                         <CheckCircle2 className="h-4 w-4" />
                       </div>
@@ -307,7 +307,7 @@ export default function IdeaRoom() {
                         <span className="font-medium text-sm">{msg.userName}</span>
                         <span className="text-xs text-muted-foreground">{msg.timestamp}</span>
                       </div>
-                      <p className="text-sm bg-muted p-2 rounded-lg">{msg.message}</p>
+                      <p className="text-sm bg-blue-50 border border-blue-100 p-2 rounded-lg">{msg.message}</p>
                     </div>
                   </div>
                 ))}
@@ -317,7 +317,7 @@ export default function IdeaRoom() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Type a message..."
-                  className="bg-background/50"
+                  className="bg-white border-gray-200"
                 />
                 <Button type="submit" size="icon">
                   <Send className="h-4 w-4" />
